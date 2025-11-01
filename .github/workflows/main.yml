@@ -1,0 +1,13 @@
+name: 定时调用URL
+on:
+  # 定时规则：每天9点执行（cron表达式语法，可在线生成：https://crontab.guru/）
+  schedule:
+    - cron: '0 1 * * *'  # 每天9点，时区为UTC（北京时间需减8小时，即若想北京时间9点，填`0 1 * * *`）
+jobs:
+  call-url:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 调用目标URL
+        run: |
+          # 发送GET请求（如需POST，可改用curl -X POST -d "参数" https://xxx.com）
+          curl "https://wmd.gymyny.com/qywx/__debug_log.php"
